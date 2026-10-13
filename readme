@@ -1,0 +1,305 @@
+# TaskFlow — Full-Stack Task Management App
+
+## 1. Project Overview
+
+TaskFlow is a modern, responsive task management web application that allows users to organize daily tasks, track progress, and manage completed and pending work.
+
+The project includes a complete frontend, backend REST API, and database.
+
+The goal is to build a functional application with clean UI, reusable components, maintainable code, and a well-organized architecture.
+
+## 2. Technology Stack
+
+### Frontend
+
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* React Router
+* Axios
+* Lucide React icons
+
+### Backend
+
+* Node.js
+* Express.js
+* TypeScript
+* Zod for request validation
+
+### Database
+
+* PostgreSQL
+* Prisma ORM
+
+### Testing
+
+* Vitest
+* React Testing Library
+* Supertest
+
+## 3. Main Features
+
+### Dashboard
+
+* Display total tasks.
+* Display pending tasks.
+* Display completed tasks.
+* Show recent tasks.
+* Show task completion statistics.
+
+### Task Management
+
+* Create a new task.
+* View all tasks.
+* View individual task details.
+* Edit task titles and descriptions.
+* Change task status.
+* Set task priority.
+* Set due dates.
+* Delete tasks.
+* Search tasks by title.
+* Filter tasks by status and priority.
+* Sort tasks by creation date or due date.
+
+### User Interface
+
+* Responsive sidebar navigation.
+* Dashboard overview cards.
+* Task list with status indicators.
+* Create and edit task forms.
+* Confirmation dialog before deleting tasks.
+* Loading indicators.
+* Empty states.
+* Error messages and success notifications.
+* Responsive layouts for desktop, tablet, and mobile.
+
+## 4. Task Data Model
+
+Each task should contain:
+
+* `id`: Unique identifier.
+* `title`: Task title.
+* `description`: Optional task description.
+* `status`: `PENDING`, `IN_PROGRESS`, or `COMPLETED`.
+* `priority`: `LOW`, `MEDIUM`, or `HIGH`.
+* `dueDate`: Optional due date.
+* `createdAt`: Creation timestamp.
+* `updatedAt`: Last update timestamp.
+
+Use PostgreSQL with Prisma to define the schema and manage database operations.
+
+## 5. API Endpoints
+
+Create the following REST API endpoints.
+
+| Method | Endpoint                | Description                     |
+| ------ | ----------------------- | ------------------------------- |
+| GET    | `/api/health`           | Check server status             |
+| GET    | `/api/tasks`            | Get tasks with optional filters |
+| GET    | `/api/tasks/:id`        | Get one task                    |
+| POST   | `/api/tasks`            | Create a task                   |
+| PUT    | `/api/tasks/:id`        | Update a task                   |
+| PATCH  | `/api/tasks/:id/status` | Update task status              |
+| DELETE | `/api/tasks/:id`        | Delete a task                   |
+| GET    | `/api/dashboard/stats`  | Get dashboard statistics        |
+
+Support query parameters for searching, filtering, sorting, and pagination where appropriate.
+
+Validate all incoming requests and return consistent JSON responses with appropriate HTTP status codes.
+
+## 6. Frontend Pages
+
+### Dashboard
+
+Show task statistics, completion progress, and recently updated tasks.
+
+### All Tasks
+
+Show a searchable, filterable, and sortable task list.
+
+### Create Task
+
+Provide a form to create a task with a title, description, priority, and due date.
+
+### Edit Task
+
+Allow users to update existing task information.
+
+### Task Details
+
+Show complete task information and provide actions to edit, complete, or delete the task.
+
+### Not Found
+
+Show a friendly page when a route does not exist.
+
+## 7. Suggested Folder Structure
+
+```text
+taskflow/
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── ui/
+│   │   │   ├── layout/
+│   │   │   └── tasks/
+│   │   ├── pages/
+│   │   ├── hooks/
+│   │   ├── services/
+│   │   ├── types/
+│   │   ├── utils/
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   └── package.json
+├── backend/
+│   ├── prisma/
+│   │   └── schema.prisma
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── middleware/
+│   │   ├── validators/
+│   │   └── server.ts
+│   ├── tests/
+│   └── package.json
+├── .env.example
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+## 8. Design Requirements
+
+Create a clean, modern dashboard with a professional SaaS-style appearance.
+
+* Use a light theme by default.
+* Use a neutral background with a consistent accent color.
+* Keep spacing, typography, and border radii consistent.
+* Use cards for dashboard statistics.
+* Use colored labels for task statuses and priorities.
+* Add subtle hover and focus states.
+* Make forms accessible and easy to use.
+* Avoid unnecessary animations and visual clutter.
+* Ensure the layout works on small mobile screens.
+
+Build reusable buttons, inputs, cards, dialogs, badges, and loading components.
+
+## 9. Database and Environment Setup
+
+Use environment variables for configuration.
+
+Create a `.env.example` file containing placeholders for:
+
+```env
+PORT=5000
+NODE_ENV=development
+FRONTEND_URL=http://localhost:5173
+DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/taskflow
+```
+
+Use a local `.env` file for actual configuration. Never commit credentials or secrets.
+
+Provide Prisma migrations and instructions for initializing the database.
+
+## 10. Error Handling and Validation
+
+* Validate task titles and other input fields.
+* Reject invalid task statuses and priorities.
+* Return a 404 response when a task does not exist.
+* Handle database errors safely.
+* Show useful error messages in the frontend.
+* Prevent duplicate form submissions while requests are pending.
+* Display empty states when no tasks match the filters.
+* Use centralized backend error handling.
+
+## 11. Development Instructions
+
+Provide scripts to run the frontend and backend.
+
+The project should support commands equivalent to:
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run test
+```
+
+Configure root-level scripts where practical, and document any separate frontend, backend, database, or migration commands that are required.
+
+Include exact installation instructions for PostgreSQL, environment setup, database migrations, development, and production builds.
+
+## 12. Claude Code Implementation Instructions
+
+Act as an experienced full-stack developer.
+
+Before implementing the project:
+
+1. Inspect the repository and its existing files.
+2. Review this README and identify any missing details.
+3. Propose an implementation plan.
+4. Establish the database schema and API contracts.
+5. Explain the architecture and dependencies.
+
+Implement the application in these phases:
+
+### Phase 1: Project Setup
+
+Set up the frontend, backend, TypeScript, linting, and root scripts.
+
+### Phase 2: Database and Backend
+
+Create the Prisma schema, migrations, validation, API routes, services, controllers, and error handling.
+
+### Phase 3: Frontend UI
+
+Build the dashboard, task pages, navigation, forms, and reusable components.
+
+### Phase 4: API Integration
+
+Connect the frontend to the backend and implement CRUD operations, filters, and dashboard statistics.
+
+### Phase 5: Testing
+
+Test API endpoints, validation, important frontend interactions, and error states.
+
+### Phase 6: Final Verification
+
+Run tests, linting, and production builds. Fix issues and update the documentation.
+
+Complete and verify each phase before moving to the next. Maintain a checklist of completed work and remaining tasks.
+
+Do not create placeholder implementations for features that are supposed to work. Do not claim that a feature or test is working unless it has been verified.
+
+## 13. Future Enhancements
+
+Keep the architecture flexible enough to support:
+
+* User registration and login.
+* User-specific tasks.
+* Password hashing and secure authentication.
+* Task labels and categories.
+* Dark mode.
+* Drag-and-drop task organization.
+* Email reminders.
+* Deployment and CI/CD.
+
+Do not implement these features in the initial version unless explicitly requested.
+
+## 14. Definition of Done
+
+The project is complete when:
+
+* The frontend and backend start successfully.
+* PostgreSQL connects successfully.
+* All task CRUD operations work.
+* Dashboard statistics reflect database data.
+* Search, filters, and sorting work correctly.
+* Input validation and error handling work.
+* The application is responsive.
+* Relevant tests and production builds pass.
+* Setup and troubleshooting instructions are documented.

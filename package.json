@@ -1,0 +1,23 @@
+{
+  "name": "taskflow",
+  "private": true,
+  "workspaces": [
+    "Backend",
+    "Frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev -w Backend\" \"npm run dev -w Frontend\"",
+    "build": "npm run build -w Backend && npm run build -w Frontend",
+    "start": "npm run start -w Backend",
+    "test": "npm run test -w Backend && npm run test -w Frontend",
+    "lint": "npm run lint -w Backend && npm run lint -w Frontend",
+    "typecheck": "npm run typecheck -w Backend && npm run typecheck -w Frontend",
+    "db:migrate": "npm run db:migrate -w Backend",
+    "db:deploy": "npm run db:deploy -w Backend",
+    "db:seed": "npm run db:seed -w Backend",
+    "db:studio": "npm run db:studio -w Backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.5"
+  }
+}
